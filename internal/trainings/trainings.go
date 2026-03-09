@@ -26,7 +26,7 @@ func (t *Training) Parse(datastring string) (err error) {
 	}
 	num, err := strconv.Atoi(info[0])
 	if err != nil {
-		return err
+		return fmt.Errorf("invalid steps format: %w", err)
 	}
 	if num <= 0 {
 		return errors.New("count steps under or aqual 0")
@@ -35,7 +35,7 @@ func (t *Training) Parse(datastring string) (err error) {
 	t.TrainingType = info[1]
 	ti, err := time.ParseDuration(info[2])
 	if err != nil {
-		return err
+		return fmt.Errorf("invalid duration format: %w", err)
 	}
 	if ti <= 0 {
 		return errors.New("duration under or aqual 0")

@@ -15,9 +15,17 @@ func Info(dataset []string, dp DataParser) {
 	var s string
 	for _, value := range dataset {
 		err_parse = dp.Parse(value)
-		log.Println(err_parse)
+		if err_parse != nil {
+			log.Println(err_parse)
+			fmt.Println(err_parse)
+			continue
+		}
 		s, err_action = dp.ActionInfo()
-		log.Println(err_action)
+		if err_action != nil {
+			log.Println(err_action)
+			fmt.Println(err_action)
+			continue
+		}
 		fmt.Println(s)
 	}
 }
